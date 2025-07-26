@@ -1,7 +1,7 @@
 public class Part1{
     public static int findStopCodon(String dna, int startIndex, String stopCodon) {
             int start = startIndex;
-            int stop = dna.indexOf(stopCodon, startIndex+3);
+            int stop = dna.indexOf(stopCodon, start+3);
             if ((start - stop) % 3 == 0) {
                 return stop;
             } else {
@@ -30,15 +30,14 @@ public class Part1{
     }
     public static void printAllGenes(String dna){
            int startIndex = 0;
-           int currIndex;
-           while (startIndex != -1) {
-               currIndex = startIndex;
+           while (true) {
+               int currIndex = startIndex;
                String currGene = findGene(dna, currIndex);
                if (currGene.isEmpty()) {
                    break;
                }
                System.out.println(currGene);
-               startIndex = dna.indexOf(currGene, startIndex + currGene.length());
+               startIndex = currIndex + currGene.length();
                System.out.println(startIndex);
            }
            System.out.println(startIndex);
